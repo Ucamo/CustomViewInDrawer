@@ -1,6 +1,7 @@
 package carrillo.uriel.customviewindrawer;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -26,6 +27,9 @@ public class CustomViewFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    //The custom view
+    private AndroidATCView myView;
 
     private OnFragmentInteractionListener mListener;
 
@@ -64,7 +68,23 @@ public class CustomViewFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_custom_view, container, false);
+        View rootView= inflater.inflate(R.layout.fragment_custom_view, container, false);
+
+        //get reference to the custom view
+        myView = (AndroidATCView)rootView.findViewById(R.id.androidATCView1);
+        myView.setSquareCol(Color.BLUE);
+        myView.setLabelCol(Color.YELLOW);
+        myView.setLabelText("Press Me");
+        myView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                myView.setSquareCol(Color.GREEN);
+                myView.setLabelCol(Color.MAGENTA);
+                myView.setLabelText("Android ATC");
+            }
+        });
+        return rootView;
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event
